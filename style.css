@@ -1,0 +1,26 @@
+body {
+  background-color: #f6f6f6;
+}
+.main {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.calculator {
+  display: flex;
+  flex-direction: column;
+  background-color: #aaaaaa;
+  border-radius: 5px;
+  width: 400px;
+}
+.button-grid {
+  padding: 15px;
+  display: flex;
+  flex-direction: column;
+}
+.display {
+  padding: 10px 20px;
+  margin-bottom: 20px;
+  -background-color: #eee;
+  border: 1px solid red;
+}
