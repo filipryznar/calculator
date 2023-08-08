@@ -5,6 +5,10 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
+  min-height: 500px;
+  -height: 75vh;
+  padding: 10px;
+  margin-top: 50px;
 }
 .calculator {
   display: flex;
@@ -12,15 +16,43 @@ body {
   background-color: #aaaaaa;
   border-radius: 5px;
   width: 400px;
+  padding: 15px;
 }
 .button-grid {
-  padding: 15px;
   display: flex;
   flex-direction: column;
 }
 .display {
-  padding: 10px 20px;
   margin-bottom: 20px;
-  -background-color: #eee;
+  background-color: #eee;
   border: 1px solid red;
+  padding: 10px 20px;
+  height: 60px;
+}
+
+.first-row {
+  display: flex;
+  gap: 10px;
+  height: 50px;
+}
+.clear {
+  flex: 1;
+  background-color: #ffaaaa;
+}
+.delete {
+  flex: 1;
+  background-color: #aaaaff;
+}
+
+button {
+  border-radius: 5px;
+}
+.row {
+  display: flex;
+  gap: 10px;
+}
+.btn {
+  flex: 1 1 50px;
+  height: 50px;
+  margin-top: 10px;
 }
