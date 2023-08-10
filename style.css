@@ -37,6 +37,17 @@ body {
   justify-content: end;
   align-items: end;
 }
+.screenLast {
+  flex: 1;
+  -border: 1px solid red;
+}
+.csreenCurent {
+  flex: 2;
+  -border: 1px solid red;
+  display: flex;
+  flex-direction: column;
+  justify-content: end;
+}
 .displayNumber {
   font-size: 50px;
 }
@@ -67,7 +78,8 @@ button {
   gap: 10px;
 }
 .btn,
-.btnOP {
+.btnOP,
+.btnOper {
   flex: 1 1 50px;
   height: 50px;
   margin-top: 10px;
