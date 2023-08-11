@@ -45,67 +45,68 @@ const secondLine = document.querySelector(".screenLast");
 const lastNum = document.createElement("div");
 const calcul = document.querySelector("#calculate");
 const operators = document.querySelectorAll(".btnOper");
+const base = document.createElement("div");
+base.textContent = 0;
+base.classList.add("displayNumber");
+display.appendChild(base);
+let num = {
+  displayNumber: "",
+  firstNumber: "",
+  secondNumber: "",
+  operator: "",
+  result: "",
+};
 
-// operators.forEach((operator) => {
-//   operator.addEventListener("click", () => {
-//     console.log(operator.textContent);
-//   });
-// });
-
-// buttons.forEach((button) => {
-//   button.addEventListener("click", () => {
-//     console.log(button.textContent);
-//     if (!isNaN(button.textContent) && operator == "") {
-//       firstNum = firstNum + button.textContent;
-//       firstNum = Number(firstNum);
-//       number.textContent = firstNum;
-//     } else if (isNaN(button.textContent)) {
-//       operator = button.textContent;
-//       lastNum.textContent = firstNum + " " + operator;
-//       number.textContent = operator;
-//     } else if (!operator == "") {
-//       secondNum = secondNum + button.textContent;
-//       secondNum = Number(secondNum);
-//       number.textContent = secondNum;
-//     }
-//     resetDisplay();
-//     displayNumber();
-//   });
-// });
-let variable = "";
+//* Number buttons
 buttons.forEach((button) => {
   button.addEventListener("click", () => {
-    if (operator == "") {
+    if (num.operator == "") {
       resetDisplay();
-      firstNum = firstNum + button.textContent;
-      firstNum = Number(firstNum);
-      number.textContent = firstNum;
+      num.displayNumber = num.displayNumber + button.textContent;
+      num.firstNumber = Number(num.displayNumber);
+      number.textContent = Number(num.displayNumber);
     } else {
-      firstNum = firstNum + button.textContent;
-      firstNum = Number(firstNum);
-      number.textContent = firstNum;
-
-      //lastNum.textContent = firstNum + " " + operator;
+      num.secondNumber = num.secondNumber + button.textContent;
+      //firstNum = firstNum + button.textContent;
+      num.secondNumber = Number(num.secondNumber);
+      number.textContent = Number(num.secondNumber);
     }
+    //TODO DELETE
+    console.log("first " + num.firstNumber);
+    console.log("second " + num.secondNumber);
+    console.log("display " + num.displayNumber);
 
-    console.log("first " + firstNum);
-    console.log("second " + secondNum);
     displayNumber();
   });
 });
 
+// Operator buttons
 operators.forEach((oper) => {
   oper.addEventListener("click", () => {
     console.log(oper.textContent);
-    operator = oper.textContent;
-    lastNum.textContent = firstNum + " " + operator;
-    secondNum = firstNum;
-    firstNum = "";
-    number.textContent = operator;
+    if (!num.result == "") {
+      num.firstNumber = num.result;
+      num.operator = oper.textContent;
+      lastNum.textContent = num.firstNumber + " " + num.operator;
+    } else if (!operator == "" && !!num.firstNumber == "") {
+      num.firstNumber = operate(
+        num.firstNumber,
+        num.operator,
+        num.secondNumber
+      );
+      num.operator = oper.textContent;
+      lastNum.textContent = num.firstNumber + " " + num.operator;
+    } else {
+      operator = oper.textContent;
+      num.operator = operator;
+      lastNum.textContent = num.firstNumber + " " + operator;
+      number.textContent = operator;
+    }
+
     displayNumber();
   });
 });
-
+//* Display
 function displayNumber() {
   number.classList.add("displayNumber");
   secondLine.appendChild(lastNum);
@@ -113,40 +114,66 @@ function displayNumber() {
 }
 function resetDisplay() {
   lastNum.textContent = "";
+  number.textContent = 0;
   secondLine.innerHTML = "";
   display.innerHTML = ""; // This will remove all child elements and reset the content.
+  displayNumber();
 }
+
+// Clear button
 clear.addEventListener("click", () => {
+  num.firstNumber = "";
+  num.operator = "";
+  num.secondNumber = "";
+  num.displayNumber = "";
+  num.result = "";
   resetDisplay();
-  firstNum = "";
-  operator = "";
-  secondNum = "";
 });
 
+//Delete button
 delButton.addEventListener("click", () => {
-  if (!firstNum == "") {
+  if (num.secondNumber == "") {
     delNumber();
-    number.textContent = firstNum;
+    number.textContent = num.firstNumber;
+    displayNumber();
+  } else {
+    num.secondNumber = Number(num.secondNumber.toString().slice(0, -1));
+    number.textContent = num.secondNumber;
     displayNumber();
   }
-  //TODO DOplnit second number
 });
 function delNumber() {
   firstNum = Number(firstNum.toString().slice(0, -1));
+  num.firstNumber = Number(num.firstNumber.toString().slice(0, -1));
 }
-calcul.addEventListener("click", () => {
-  if (!firstNum == "" && !operator == "" && !secondNum == "") {
-    result = operate(+firstNum, operator, +secondNum);
-    lastNum.textContent = firstNum + " " + operator + " " + secondNum + " =";
-    console.log(result);
 
-    number.textContent = result;
+// Calculation button
+calcul.addEventListener("click", () => {
+  if (num.secondNumber == 0 && num.operator == "÷") {
+    alert("Error: division by zero");
+    num.firstNumber = "";
+    num.operator = "";
+    num.secondNumber = "";
+    num.displayNumber = "";
+    num.result = "";
+    resetDisplay();
+  } else if (
+    !num.firstNumber == "" &&
+    !num.operator == "" &&
+    !num.secondNumber == ""
+  ) {
+    num.result = operate(num.firstNumber, num.operator, num.secondNumber);
+    lastNum.textContent =
+      num.firstNumber + " " + num.operator + " " + num.secondNumber + " =";
+    console.log(num.result);
+
+    number.textContent = Math.round(num.result * 100) / 100;
+
     //resetDisplay();
     displayNumber();
-    firstNum = "";
-    operator = "";
-    secondNum = "";
-
-    return result;
+    num.firstNumber = 0;
+    num.operator = "";
+    num.secondNumber = 0;
+    return;
   }
 });
