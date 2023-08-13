@@ -20,6 +20,7 @@ body {
   border-radius: 5px;
   width: 400px;
   padding: 15px;
+  border: 1px black solid;
 }
 .button-grid {
   display: flex;
@@ -36,6 +37,10 @@ body {
   flex-direction: column;
   justify-content: end;
   align-items: end;
+  border: 1px black solid;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
 }
 .screenLast {
   flex: 1;
@@ -62,12 +67,14 @@ body {
   background-color: #ffaaaa;
   font-size: inherit;
   font-weight: inherit;
+  border: 1px black solid;
 }
 .delete {
   flex: 1;
   background-color: #aaaaff;
   font-size: inherit;
   font-weight: inherit;
+  border: 1px black solid;
 }
 
 button {
@@ -79,10 +86,12 @@ button {
 }
 .btn,
 .btnOP,
-.btnOper {
+.btnOper,
+.dot {
   flex: 1 1 50px;
   height: 50px;
   margin-top: 10px;
   font-size: inherit;
   font-weight: inherit;
+  border: 1px black solid;
 }
