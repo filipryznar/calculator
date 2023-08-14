@@ -1,8 +1,14 @@
 # Calculator Web Application
 
+**Welcome to the Calculator Web Application!** This is a simple web-based calculator that allows you to perform basic arithmetic calculations conveniently within your web browser.
+
+
 [Calculator Preview](https://github.com/filipryznar/calculator/blob/main/calculator.jpg)
 
-**Welcome to the Calculator Web Application!** This is a simple web-based calculator that allows you to perform basic arithmetic calculations conveniently within your web browser.
+<a href="https://filipryznar.github.io/calculator/">
+  <img src="https://github.com/filipryznar/calculator/raw/main/calculator.jpg" alt="Calculator Preview" width="200">
+</a>
+
 
 ## Features
 
