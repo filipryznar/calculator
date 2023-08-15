@@ -36,7 +36,7 @@ You can access the deployed calculator application using the following link: [Ca
 - Use `+`, `-`, `*`, `/` keys for corresponding operations.
 - Press the **Enter** key or **=** key to perform calculations.
 - Press the **Backspace** key to delete the last entered digit.
-- Press the **c** key to clear the calculator's display.
+- Press the <kbd>c</kbd> key to clear the calculator's display.
 
 ## Technologies Used
 
